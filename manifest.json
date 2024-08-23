@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Table Calculator",
+    "version": "1.0",
+    "description": "Performs additional calculations on tables in webpages.",
+    "permissions": ["activeTab", "scripting"],
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    },
+    "icons": {
+      "48": "icon.png"
+    }
+  }
+  
