@@ -3,7 +3,7 @@
     "name": "Table Calculator",
     "version": "1.0",
     "description": "Performs additional calculations on tables in webpages.",
-    "permissions": ["activeTab", "scripting"],
+    "permissions": ["storage", "activeTab", "scripting"],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],

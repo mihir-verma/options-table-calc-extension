@@ -100,10 +100,18 @@ function performCalculations(table) {
 
 // Function to find and modify tables
 function modifyTables() {
-    let tables = document.querySelectorAll("table");
-    tables.forEach(table => {
-        performCalculations(table);
+
+    chrome.storage.local.get('extensionEnabled', data => {
+        if (data.extensionEnabled !== false) {
+            let tables = document.querySelectorAll("table");
+            tables.forEach(table => {
+                performCalculations(table);
+            });
+        } else {
+            // console.log("Extension is disabled.");
+        }
     });
+
 }
 
 // Run the function on page load
@@ -115,4 +123,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         modifyTables();
         sendResponse({status: "done"});
     }
+    if (request.action === 'toggleExtension') {
+        if (request.state) {
+            console.log("Extension is now enabled.");
+        } else {
+            console.log("Extension is now disabled.");
+        }
+    }    
 });
